@@ -1,0 +1,497 @@
+/* Simple styling for the together.html page */
+body {
+    background: linear-gradient(180deg, #0b0716 0%, #0f1630 100%);
+    color: var(--muted-white);
+    font-family: "Inter", "Segoe UI", system-ui;
+    overflow: hidden;
+}
+
+.together-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    /* --- NEW: Add background properties here --- */
+    background-size: cover;
+    background-position: center;
+    transition: background-image 900ms ease;
+}
+
+.forms-view {
+    text-align: center;
+    background: transparent;
+    border-radius: 0;
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 0.9rem;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-link:hover {
+    color: var(--accent);
+}
+
+.together-logo {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    margin: 0;
+    color: #fff;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    margin-bottom: 30px;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    background: rgba(20, 20, 48, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.together-form {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+h2 {
+    color: #fff;
+    margin-top: 0;
+}
+
+.form-field {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-field input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.form-field-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.form-field-checkbox label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.form-field-checkbox input {
+    width: auto;
+    cursor: pointer;
+}
+
+.form-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary-1), var(--primary-2));
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 180ms ease;
+}
+
+.form-button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(109, 93, 252, 0.3);
+}
+
+.error-message {
+    color: #ff7b7b;
+    font-size: 0.9rem;
+    min-height: 1.2em;
+    margin-top: 10px;
+}
+
+
+/* Chat View Styling */
+.chat-view {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.chat-view .chat-header {
+    display: flex;
+    position: static;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-view #chatbox {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 22px 26px 0;
+    gap: 10px;
+    background: transparent;
+}
+
+.chat-view .message.luvisa-message {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* === UPDATED: Input Area Positioning === */
+.chat-view .input-area {
+    display: flex;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(94%, 820px);
+    /* Max width */
+    bottom: 20px;
+    /* Spacing from bottom */
+    padding: 0;
+    background: transparent;
+    justify-content: center;
+    z-index: 120;
+}
+
+/* === END UPDATE === */
+
+.chat-view .input-bar-container {
+    max-width: 100%;
+    /* Will fill the parent .input-area */
+    background: linear-gradient(180deg, rgba(8, 10, 30, 0.6), rgba(8, 10, 30, 0.45));
+    border: 1px solid rgba(130, 110, 255, 0.12);
+    box-shadow: 0 8px 30px rgba(4, 6, 30, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* === NEW: Input text color fix === */
+.chat-view .input-area input {
+    color: #FFFFFF;
+    /* Force white text */
+}
+
+.chat-view .input-area input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    /* Lighter placeholder */
+}
+
+/* === END NEW === */
+
+
+/* AI TOGGLE SWITCH STYLES */
+.chat-view .right-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-right: 15px;
+}
+
+.leave-space-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 123, 123, 0.1);
+    border: 1px solid rgba(255, 123, 123, 0.3);
+    color: #ff9f9f;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+
+.leave-space-btn i {
+    font-size: 1.1rem;
+}
+
+.leave-space-btn:hover {
+    background: rgba(255, 123, 123, 0.3);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.ai-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--muted-white);
+}
+
+.ai-toggle-label {
+    opacity: 0.7;
+}
+
+.ai-toggle input {
+    display: none;
+}
+
+.ai-toggle-slider {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+    transition: background-color 200ms ease;
+}
+
+.ai-toggle-slider::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 200ms ease;
+}
+
+.ai-toggle input:checked+.ai-toggle-slider {
+    background-color: var(--primary-1);
+}
+
+.ai-toggle input:checked+.ai-toggle-slider::before {
+    transform: translateX(18px);
+}
+
+/* STYLE FOR SENDER NAME LABEL */
+.luvisa-message .sender-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 10px;
+    margin-bottom: 2px;
+}
+
+
+/* --- RESPONSIVE OPTIMIZATIONS --- */
+
+/* Tablet view */
+@media (max-width: 768px) {
+    .form-wrapper {
+        /* Remove the glass box and make it fill width */
+        background: transparent;
+        backdrop-filter: none;
+        max-width: 500px;
+        padding: 10px;
+    }
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+    .forms-view {
+        padding: 10px;
+        /* Slim down padding */
+    }
+
+    .form-wrapper {
+        padding: 5px;
+        /* Slim down padding */
+    }
+
+    .together-form {
+        min-width: unset;
+        /* Let form shrink */
+    }
+
+    /* --- Chat Header --- */
+    .chat-view .left-header {
+        gap: 8px;
+    }
+
+    .chat-view .profile-pic {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chat-view .chat-title span {
+        font-size: 0.95rem;
+    }
+
+    .chat-view .chat-title small {
+        font-size: 0.75rem;
+    }
+
+    .chat-view .right-header {
+        gap: 8px;
+        padding-right: 10px;
+    }
+
+    /* Hide the "Leave" text */
+    .leave-space-btn span {
+        display: none;
+    }
+
+    .leave-space-btn {
+        padding: 8px;
+        /* Make it squarer */
+        border-radius: 50%;
+        /* Make it round */
+    }
+
+    /* Hide the "Luvisa AI:" text */
+    .ai-toggle-label {
+        display: none;
+    }
+
+    /* --- Chat Content --- */
+    .chat-view #chatbox {
+        padding: 15px 10px 0;
+        /* Slim down padding */
+    }
+
+    /* === UPDATED: Mobile input area === */
+    .chat-view .input-area {
+        width: calc(100% - 20px);
+        /* Full width with 10px margin */
+        bottom: 10px;
+        padding: 0;
+    }
+
+}
+
+/* === Settings Dropdown Styles === */
+.settings-dropdown {
+    position: absolute;
+    bottom: 70px;
+    /* Above the sidebar button */
+    left: 70px;
+    /* Right of the sidebar */
+    width: 220px;
+    background: rgba(20, 20, 40, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 10001;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.2s ease;
+}
+
+.settings-dropdown.show {
+    display: flex;
+}
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.dropdown-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.dropdown-item.active {
+    background: var(--primary-1, #6d5dfc);
+    color: #fff;
+}
+
+.dropdown-item i {
+    font-size: 1.2rem;
+}
+
+.dropdown-item .arrow {
+    margin-left: auto;
+    font-size: 1.1rem;
+    color: #888;
+}
+
+.dropdown-item .check {
+    margin-left: auto;
+    display: none;
+}
+
+.dropdown-item.active .check {
+    display: block;
+}
+
+/* Theme Submenu Positioning */
+.settings-dropdown.submenu {
+    bottom: 70px;
+    left: 70px;
+}

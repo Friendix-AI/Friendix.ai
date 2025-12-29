@@ -1,0 +1,70 @@
+/* Basic styles for static pages like About, Pricing, etc. */
+body {
+    background: linear-gradient(180deg, #0b0716 0%, #0f1630 100%);
+    color: var(--muted-white);
+    font-family: "Inter", "Segoe UI", system-ui;
+    line-height: 1.7;
+    
+    /* --- MODIFIED --- */
+    padding: 0;
+    margin: 0;
+    overflow: hidden; 
+}
+
+.page-container {
+    max-width: 800px;  /* Keep content readable */
+    margin: 0 auto;    /* Center the content */
+    padding: 40px;     /* Add good padding */
+    
+    /* --- REMOVED / CHANGED --- */
+    background: transparent; /* Remove the glass box */
+    border-radius: 0;
+    backdrop-filter: none;
+
+    /* --- NEW --- */
+    height: 100vh; /* Make it full height */
+    overflow-y: auto; /* Allow content to scroll */
+    box-sizing: border-box; /* Include padding in height */
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--muted-white);
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: color 180ms ease;
+}
+.back-link:hover {
+    color: var(--accent);
+}
+
+h1 {
+    margin-top: 0;
+    color: #fff;
+    border-bottom: 1px solid var(--primary-1);
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #fff;
+    margin-top: 30px;
+}
+
+p, li {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+a {
+    color: var(--accent);
+}
+
+/* --- NEW: Add custom scrollbar to match app --- */
+.page-container::-webkit-scrollbar {width:10px}
+.page-container::-webkit-scrollbar-track {background:transparent}
+.page-container::-webkit-scrollbar-thumb {background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));border-radius:10px}
+.page-container::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.08))}
+.page-container {scrollbar-width:thin;scrollbar-color: rgba(255,255,255,0.12) transparent}

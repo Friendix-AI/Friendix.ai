@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Friendix ID</title>
+    <meta name="google-site-verification" content="6mJj6E39N-ihd-lAwxij3MIcwh8Z7b4XRJh8lzW8GFg" />
+    <meta name="description"
+        content="Friendix.ai is your AI-powered friend that listens, supports, and chats with you — blending emotional intelligence with technology.">
+    <meta name="keywords"
+        content="AI friend, Friendix, chatbot, AI companion, emotional support AI, friend-like AI, personal assistant">
+    <meta name="author" content="Dhanush">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="Friendix.ai — Your AI Friend Who Truly Cares">
+    <meta property="og:description" content="Chat with Friendix.ai — your AI companion that listens, cares, and helps.">
+    <meta property="og:url" content="https://friendix-ai.onrender.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://friendix-ai.onrender.com/assets/friendix-preview.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Friendix.ai — Your AI Friend Who Truly Cares">
+    <meta name="twitter:description" content="Meet Friendix.ai — your AI-powered friend.">
+    <meta name="twitter:image" content="https://friendix-ai.onrender.com/assets/friendix-preview.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Friendix.ai",
+      "alternateName": ["Friendix", "Friendix AI"],
+      "url": "https://friendix-ai.onrender.com/"
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="preload" as="image" href="logo.png">
+    <link rel="preload" as="image" href="avatars/default_avatar.png">
+    <link rel="preload" as="image" href="backgrounds/profile_bg.jpg">
+
+    <link rel="stylesheet" href="profile.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="card-container">
+
+        <div class="profile-wrapper">
+            <div class="id-card">
+                <div class="card-top" id="cardTop">
+                    <div class="card-top-header">
+                        <img src="logo.png" class="luvisa-logo-small">
+                        <span>Friendix Profile</span>
+                        <i class='bx bx-share-alt id-card-share-btn' id="idCardShareBtn"></i>
+                    </div>
+                </div>
+
+                <div id="avatarWrapper" class="avatar-wrapper">
+                    <img id="avatarPreview" src="avatars/default_avatar.png" class="avatar-preview" />
+                    <div class="avatar-overlay">
+                        <i class='bx bxs-camera'></i>
+                    </div>
+                </div>
+                <input type="file" id="avatarUpload" accept="image/*" style="display: none;" />
+                <div class="card-bottom">
+                    <div class="user-details">
+                        <div class="editable-field">
+                            <input id="displayNameInput" class="card-name" placeholder="Your Name" readonly />
+                            <i class='bx bxs-pencil edit-icon' id="nameEditIcon"></i>
+                        </div>
+                        <span id="earlyUserBadge" class="early-user-badge" style="display: none;">Early User</span>
+
+                        <div class="editable-field">
+                            <textarea id="statusMessageInput" class="card-status" placeholder="Your Status" rows="1"
+                                maxlength="50" readonly></textarea>
+                            <i class='bx bxs-pencil edit-icon' id="statusEditIcon"></i>
+                        </div>
+                    </div>
+
+                    <div class="bond-level-container">
+                        <div class="bond-info">
+                            <span class="bond-title">Bond Level</span>
+                            <span class="bond-level-val" id="idCardLevel">Lvl 1</span>
+                        </div>
+                        <div class="bond-progress-bar">
+                            <div class="bond-progress-fill" id="idCardProgressFill" style="width: 0%;"></div>
+                        </div>
+                        <div class="bond-xp-text" id="idCardXpText">0/50 XP</div>
+                    </div>
+                    <div class="info-grid">
+                        <span>FRIENDSHIP EST.</span>
+                        <span id="friendshipYear">...</span>
+                        <span>ID CODE</span>
+                        <span id="idCode">FRD-??????</span>
+                        <span>TEAM</span>
+                        <span>Friendix's Circle</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="avatar-context-menu" id="avatarContextMenu">
+                <div class="avatar-menu-item" id="menuChangeImage">
+                    <i class='bx bx-image-add'></i>
+                    <span>Change image</span>
+                </div>
+                <div class="avatar-menu-item" id="menuViewImage">
+                    <i class='bx bx-expand'></i>
+                    <span>View image</span>
+                </div>
+                <div class="avatar-menu-item" id="menuRemoveImage">
+                    <i class='bx bx-trash'></i>
+                    <span>Remove image</span>
+                </div>
+            </div>
+
+            <p id="saveMessage" class="save-message"></p>
+
+            <div class="button-group">
+                <button id="saveProfileBtn" class="primary-btn" style="display: none;"><span>Save
+                        Changes</span></button>
+                <button id="cancelBtn" class="secondary-btn">Back to Chat</button>
+            </div>
+
+            <div class="qr-wrapper" id="qrWrapper">
+                <i class='bx bx-x qr-close-btn' id="qrCloseBtn"></i>
+                <h3>Share Your ID</h3>
+                <div id="qrCodeContainer" class="qr-code-container">
+                </div>
+                <button id="shareBtn" class="primary-btn share-btn">
+                    <i class='bx bx-share-alt'></i> Share Link
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="profile.js" defer></script>
+
+</body>
+
+</html>

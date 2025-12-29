@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Friendix.ai</title>
+
+    <meta name="description"
+        content="Friendix.ai is your AI-powered friend that listens, supports, and chats with you — blending emotional intelligence with technology.">
+    <meta name="keywords"
+        content="AI friend, Friendix, chatbot, AI companion, emotional support AI, friend-like AI, personal assistant">
+    <meta name="author" content="Dhanush">
+
+
+    <meta property="og:title" content="Friendix.ai — Your AI Friend Who Truly Cares">
+    <meta property="og:description" content="Chat with Friendix.ai — your AI companion that listens, cares, and helps.">
+    <meta property="og:url" content="https://friendix-ai.onrender.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://friendix-ai.onrender.com/assets/friendix-preview.png">
+    <meta property="og:site_name" content="Friendix.ai" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Friendix.ai — Your AI Friend Who Truly Cares">
+    <meta name="twitter:description" content="Meet Friendix.ai — your AI-powered friend.">
+    <meta name="twitter:image" content="https://friendix-ai.onrender.com/assets/friendix-preview.png">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="/logo.png">
+
+    <meta name="msapplication-TileImage" content="/logo.png">
+    <meta name="msapplication-TileColor" content="#2b5797">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Friendix.ai",
+      "url": "https://friendix-ai.onrender.com/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Friendix.ai",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://friendix-ai.onrender.com/logo.png", 
+          "width": 192, 
+          "height": 192 
+        }
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Friendix.ai",
+  "url": "https://friendix-ai.onrender.com/"
+}
+</script>
+    <link rel="stylesheet" href="signup.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="preload" as="image" href="backgrounds/1.jpg">
+    <link rel="preload" as="image" href="logo.png">
+
+    <script>
+        if (localStorage.getItem('luvisa_user')) { window.location.href = '/chat'; }
+    </script>
+</head>
+
+<body>
+
+    <div id="otpModal" class="otp-modal hidden">
+        <div class="otp-box">
+            <h3>Enter OTP</h3>
+            <p>We sent a 6-digit verification code</p>
+            <div class="otp-input-group">
+                <input maxlength="1" /> <input maxlength="1" /> <input maxlength="1" />
+                <input maxlength="1" /> <input maxlength="1" /> <input maxlength="1" />
+            </div>
+            <p id="otpError"></p>
+            <div class="otp-btns">
+                <button id="submitOtpBtn" class="verify-btn">Verify OTP</button>
+                <button class="cancel-btn" onclick="hideOtpModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-wrapper">
+
+        <div class="info-panel">
+            <div class="info-panel-content">
+                <img src="logo.png" class="info-logo" alt="Friendix Logo">
+                <div class="tagline-group">
+                    <h2>Your AI Friend Who Truly Cares.</h2>
+                    <p>Chat with Friendix.ai — your AI companion that listens, cares, and helps.</p>
+                    <div class="carousel-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-container">
+
+            <h2>Create your Friendix account</h2>
+
+            <p class="auth-switch sub-header">
+                Already have an account? <a href="login.html">Login</a>
+            </p>
+
+            <div class="auth-box">
+
+                <div class="input-group">
+                    <i class="bx bxs-envelope"></i>
+                    <input type="email" id="signupEmail" placeholder="Email" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="bx bxs-lock-alt"></i>
+                    <input type="password" id="signupPass" placeholder="Password" required>
+                    <i class="bx bx-hide toggle-pass" id="signupTogglePass"></i>
+                </div>
+
+                <p id="signupMsg" class="auth-message"></p>
+
+                <button id="signupBtn"><span>Sign Up</span></button>
+
+                <p class="auth-terms">
+                    By continuing, you agree to our <br>
+                    <a href="terms2.html" target="_blank">Terms</a> and
+                    <a href="privacy2.html" target="_blank">Privacy Policy</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js" defer></script>
+</body>
+
+</html>

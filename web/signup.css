@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Main Body Style --- */
+body {
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    margin: 0;
+    color: #ffffff;
+    overflow: hidden; /* Prevents scrollbars */
+    background-color: #252433; /* Base color from your form panel */
+}
+
+/* --- Main Wrapper (Full Screen) --- */
+.auth-wrapper {
+    width: 100vw;  /* Full screen width */
+    height: 100vh; /* Full screen height */
+    display: flex;
+    background-color: #252433; /* Main panel color */
+    overflow: hidden; 
+}
+
+/* --- 1. LEFT INFO PANEL --- */
+.info-panel {
+    flex-basis: 45%;
+    background-color: #252433; 
+    padding: 20px 40px; /* Makes image taller */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;   
+    color: #ffffff;
+}
+
+.info-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    z-index: 2;
+}
+.tagline-group {
+    z-index: 2;
+}
+.tagline-group h2 {
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.tagline-group p {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+.carousel-dots {
+    display: flex;
+    gap: 8px;
+}
+.carousel-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.carousel-dots .dot.active {
+    background-color: #ffffff;
+    width: 25px;
+    border-radius: 5px;
+}
+
+/* --- Left Panel Image Box --- */
+.info-panel-content {
+    width: 100%;
+    height: 100%;
+    background-image: url('backgrounds/1.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px; 
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; 
+    overflow: hidden; 
+}
+
+/* --- Left Panel Image Overlay --- */
+.info-panel-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+    z-index: 1;
+}
+
+
+/* --- 2. RIGHT FORM PANEL --- */
+.auth-container {
+    flex-basis: 55%;
+    background: #252433;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    
+    /* FIX: Makes the form clickable */
+    position: relative;
+    z-index: 2;
+    
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.auth-container h2 {
+    font-weight: 600;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
+    max-width: 420px;
+}
+
+.sub-header {
+    font-size: 1em;
+    color: #a0a0b0;
+    margin-bottom: 30px;
+    text-align: left;
+    width: 100%;
+    max-width: 420px;
+}
+.sub-header a {
+    color: #a98dff;
+    text-decoration: none;
+    font-weight: 500;
+}
+.sub-header a:hover {
+    text-decoration: underline;
+}
+
+.auth-box {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; 
+    width: 100%;
+    max-width: 420px;
+}
+
+.input-group {
+    position: relative;
+}
+
+/* Generic icon style (e.g., user, lock) */
+.input-group i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #888;
+}
+
+/* --- FIX for Eye Icon (using ID) --- */
+#signupTogglePass {
+    left: auto;  /* Override generic 'left: 18px' */
+    right: 18px; /* Position it on the right */
+    cursor: pointer;
+}
+#signupTogglePass:hover {
+    color: #fff;
+}
+
+/* Input style */
+.input-group input {
+    width: 100%;
+    padding: 16px 50px; /* (T/B, R/L) */
+    border-radius: 12px;
+    border: 1px solid #4a4959;
+    outline: none;
+    background-color: #363545; 
+    color: #ffffff;
+    font-size: 1em;
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    transition: all 0.3s ease;
+}
+.input-group input:focus {
+    border-color: #8a63d2; 
+    background-color: #1a1926;
+    box-shadow: 0 0 10px rgba(138, 99, 210, 0.3);
+}
+.input-group input::placeholder {
+    color: #888;
+}
+
+/* Hides the "Forgot password?" text from login page */
+.forgot-text {
+   display: none;
+}
+
+/* --- SIGNUP Button Style --- */
+button#signupBtn {
+    background: #8a63d2; /* Purple */
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    padding: 16px;
+    font-size: 1.1em;
+    font-weight: 600;
+    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+button#signupBtn:hover {
+    background: #7b5aff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(138, 99, 210, 0.3);
+}
+
+/* Loading Spinner */
+button.loading span {
+    visibility: hidden;
+    opacity: 0;
+}
+button.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s ease infinite;
+}
+@keyframes spin {
+    from { transform: rotate(0turn); }
+    to { transform: rotate(1turn); }
+}
+
+/* Error message */
+.auth-message {
+    text-align: center;
+    min-height: 20px;
+    font-size: 0.9em;
+    color: #ffc2d1;
+}
+
+/* Terms */
+.auth-terms {
+    font-size: 0.8em;
+    color: #a0a0b0;
+    text-align: center;
+    margin-top: 20px;
+}
+.auth-terms a {
+    color: #c0c0d0;
+    font-weight: 500;
+    text-decoration: none;
+}
+.auth-terms a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .auth-wrapper {
+        flex-direction: column;
+        height: 100vh; 
+        width: 100vw; 
+        overflow-y: auto;
+    }
+    .info-panel {
+        display: none; /* Hide info panel on mobile */
+    }
+    .auth-container {
+        flex-basis: 100%;
+        padding: 40px 30px;
+        justify-content: flex-start;
+        padding-top: 60px;
+    }
+    .auth-container h2 {
+        font-size: 1.8em;
+    }
+}
+
+
+/* --- OTP Modal Styles (Copied from your old signup.css) --- */
+.otp-modal {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 99999;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.otp-modal.hidden { display: none; }
+.otp-box {
+    /* Use same style as auth-container, but with old glassmorphism */
+    background: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 30px;
+    width: 330px;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #fff;
+}
+.otp-input-group {
+    display: flex; justify-content: center;
+    gap: 10px; margin: 15px 0;
+}
+.otp-input-group input {
+    width: 45px; height: 55px; font-size: 22px;
+    border: 2px solid #ffcce7; border-radius: 10px;
+    text-align: center; outline: none;
+    background: #ffffffdd; font-weight: bold;
+    color: #333; /* Text color */
+}
+.otp-btns { display: flex; justify-content: center; gap: 12px; }
+.verify-btn, .cancel-btn {
+    padding: 10px 18px; font-size: 15px; border: none;
+    border-radius: 12px; cursor: pointer; color: #fff;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.verify-btn { background: linear-gradient(45deg,#ff77c8,#ff4d88); }
+.cancel-btn { background: #d14f4f; }
+.verify-btn:hover, .cancel-btn:hover { opacity: 0.8; }
+#otpError {
+    height: 18px; font-size: 14px;
+    color: #ffd2d2; margin-bottom: 3px;
+}
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%,60% { transform: translateX(-8px); }
+    40%,80% { transform: translateX(8px); }
+}
+.shake { animation: shake 0.35s ease; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

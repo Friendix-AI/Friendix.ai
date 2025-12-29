@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Essential for mobile -->
+    <title>Friendix Admin</title>
+
+    <!-- SEO & Site Name -->
+    <meta property="og:site_name" content="Friendix.ai">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Friendix.ai",
+      "alternateName": ["Friendix", "Friendix AI"],
+      "url": "https://friendix-ai.onrender.com/"
+    }
+    </script>
+    <link rel="stylesheet" href="admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div id="adminLoginOverlay" class="login-overlay">
+        <div class="login-box">
+            <div class="login-logo"><i class='bx bxs-lock-alt'></i></div>
+            <h2>Admin Access</h2>
+            <p>Enter your admin credentials.</p>
+            <input type="email" id="adminEmailInput" placeholder="Admin Email" />
+            <input type="password" id="adminPasswordInput" placeholder="Secret Password" />
+            <button id="adminLoginBtn">Unlock Dashboard</button>
+            <p id="adminLoginError" class="error-text"></p>
+            <a href="login.html" class="back-link">Back to App</a>
+        </div>
+    </div>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+                <span>Friendix Admin</span>
+                <!-- Close button for mobile -->
+                <i class='bx bx-x mobile-close' id="mobileSidebarClose"></i>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-tab="dashboard"><i class='bx bxs-dashboard'></i> Dashboard</button>
+                <button class="nav-btn" data-tab="users"><i class='bx bxs-user-detail'></i> Users</button>
+                <button class="nav-btn" data-tab="moderation"><i class='bx bxs-shield-alt-2'></i> Moderation</button>
+                <button class="nav-btn" data-tab="messages"><i class='bx bxs-message-alt-search'></i> Inspector</button>
+                <button class="nav-btn" data-tab="feedback"><i class='bx bxs-inbox'></i> Feedback</button>
+                <button class="nav-btn" data-tab="logs"><i class='bx bxs-file-find'></i> Audit Logs</button>
+                <button class="nav-btn" data-tab="broadcast"><i class='bx bxs-megaphone'></i> Broadcast</button>
+                <button class="nav-btn" data-tab="admins"><i class='bx bxs-group'></i> Admins</button>
+            </nav>
+            <button id="logoutBtn" class="logout-btn"><i class='bx bx-log-out'></i> Logout</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Mobile Menu Button -->
+            <div class="mobile-header">
+                <i class='bx bx-menu' id="sidebarToggle"></i>
+                <span>Friendix Admin</span>
+            </div>
+
+            <!-- DASHBOARD -->
+            <div id="dashboard" class="tab-content active">
+                <header>
+                    <h1>Dashboard Overview</h1>
+                    <div class="header-actions">
+                        <button id="exportUsersBtn" class="btn-icon btn-success" title="Export Data"><i
+                                class='bx bxs-download'></i> <span class="btn-text">Export CSV</span></button>
+                    </div>
+                </header>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card"><i class='bx bxs-user-account'></i>
+                        <div class="stat-info">
+                            <h3>Total Users</h3><span id="statUsers">...</span>
+                        </div>
+                    </div>
+                    <div class="stat-card"><i class='bx bxs-chat'></i>
+                        <div class="stat-info">
+                            <h3>Total Messages</h3><span id="statMessages">...</span>
+                        </div>
+                    </div>
+                    <div class="stat-card"><i class='bx bxs-server'></i>
+                        <div class="stat-info">
+                            <h3>Maintenance Mode</h3><span id="statMaintenance">Off</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Widgets -->
+                <div class="dashboard-widgets three-col">
+                    <!-- Analytics Chart -->
+                    <div class="widget-card chart-card">
+                        <h3>User Growth</h3>
+                        <div class="chart-wrapper"><canvas id="growthChart"></canvas></div>
+                    </div>
+
+                    <!-- System Health -->
+                    <div class="widget-card health-card">
+                        <h3>Server Health</h3>
+                        <div class="health-item">
+                            <div class="h-label"><span>CPU</span><span id="cpuVal">0%</span></div>
+                            <div class="h-bar">
+                                <div class="h-fill" id="cpuBar" style="width:0%"></div>
+                            </div>
+                        </div>
+                        <div class="health-item">
+                            <div class="h-label"><span>RAM</span><span id="ramVal">0%</span></div>
+                            <div class="h-bar">
+                                <div class="h-fill" id="ramBar" style="width:0%"></div>
+                            </div>
+                        </div>
+                        <div class="health-item">
+                            <div class="h-label"><span>Disk</span><span id="diskVal">0%</span></div>
+                            <div class="h-bar">
+                                <div class="h-fill" id="diskBar" style="width:0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Controls -->
+                    <div class="widget-card control-card">
+                        <h3>Controls</h3>
+                        <div class="control-item">
+                            <div class="control-info">
+                                <h4>Maintenance</h4>
+                                <p>Lock app access</p>
+                            </div>
+                            <label class="switch"><input type="checkbox" id="maintenanceToggle"><span
+                                    class="slider round"></span></label>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-info">
+                                <h4>Status</h4>
+                                <p class="status-ok"><i class='bx bxs-circle'></i> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- USERS -->
+            <div id="users" class="tab-content">
+                <header>
+                    <h1>User Management</h1>
+                    <input type="text" id="userSearch" placeholder="Search..." class="search-bar">
+                </header>
+                <div class="table-wrapper">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>ID</th>
+                                <th>Sub</th>
+                                <th>Lvl</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MODERATION -->
+            <div id="moderation" class="tab-content">
+                <header>
+                    <h1>Moderation Queue</h1>
+                    <button id="refreshModBtn" class="btn-icon btn-info"><i class='bx bx-refresh'></i></button>
+                </header>
+                <div class="table-wrapper">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>User</th>
+                                <th>Reason</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modTableBody">
+                            <tr>
+                                <td colspan="4">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MESSAGES -->
+            <div id="messages" class="tab-content">
+                <header>
+                    <h1>Message Inspector</h1>
+                    <div class="search-group">
+                        <input type="text" id="msgSearchInput" placeholder="Keyword..." class="search-bar">
+                        <button id="msgSearchBtn" class="primary-btn">Search</button>
+                    </div>
+                </header>
+                <div class="table-wrapper">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="messagesTableBody">
+                            <tr>
+                                <td colspan="4">Search for messages.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FEEDBACK -->
+            <div id="feedback" class="tab-content">
+                <header>
+                    <h1>User Feedback</h1>
+                    <button id="refreshFeedbackBtn" class="btn-icon btn-info"><i class='bx bx-refresh'></i></button>
+                </header>
+                <div class="table-wrapper">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>User</th>
+                                <th>Category</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedbackTableBody">
+                            <tr>
+                                <td colspan="5">Loading feedback...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- LOGS -->
+            <div id="logs" class="tab-content">
+                <header>
+                    <h1>Audit Logs</h1>
+                    <button id="refreshLogsBtn" class="btn-icon btn-info"><i class='bx bx-refresh'></i></button>
+                </header>
+                <div class="table-wrapper">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Admin</th>
+                                <th>Action</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- BROADCAST -->
+            <div id="broadcast" class="tab-content">
+                <header>
+                    <h1>Global Broadcast</h1>
+                </header>
+                <div class="broadcast-box">
+                    <textarea id="broadcastMsg" placeholder="Type announcement..."></textarea>
+                    <div class="filter-options">
+                        <p><strong>Target:</strong></p>
+                        <div class="radio-group">
+                            <label><input type="radio" name="targetType" value="all" checked> All</label>
+                            <label><input type="radio" name="targetType" value="filtered"> Filtered</label>
+                        </div>
+                        <div id="filterControls" class="filter-controls" style="display: none;">
+                            <div class="filter-row">
+                                <label>Sub:</label>
+                                <select id="filterSubscription" class="modal-input" style="width:auto;margin:0">
+                                    <option value="any">Any</option>
+                                    <option value="free">Free</option>
+                                    <option value="pro">Pro</option>
+                                </select>
+                            </div>
+                            <div class="filter-row"><label><input type="checkbox" id="filterEarlyUser"> Early
+                                    Badge</label></div>
+                            <div class="filter-row"><input type="email" id="filterEmail" class="modal-input"
+                                    placeholder="Email..." style="margin:0;width:100%"></div>
+                        </div>
+                    </div>
+                    <button id="sendBroadcastBtn" class="primary-btn" style="margin-top:20px">Send</button>
+                    <p id="broadcastStatus"></p>
+                </div>
+            </div>
+
+            <!-- ADMINS -->
+            <div id="admins" class="tab-content">
+                <header>
+                    <h1>Manage Admins</h1>
+                    <button class="primary-btn"
+                        onclick="document.getElementById('addAdminModal').style.display='block'">+ New Admin</button>
+                </header>
+                <div class="table-wrapper">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Created</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminsTableBody">
+                            <tr>
+                                <td colspan="4">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODALS -->
+    <div id="chatModal" class="modal">
+        <div class="modal-content"><span class="close-modal" id="closeChatModal">&times;</span>
+            <h2>User Chats</h2>
+            <div id="chatModalBody" class="modal-body-scroll"></div>
+        </div>
+    </div>
+    <div id="editUserModal" class="modal">
+        <div class="modal-content small"><span class="close-modal" id="closeEditUserModal">&times;</span>
+            <h2>Edit User</h2>
+            <input type="hidden" id="editUserId">
+            <label>Name</label>
+            <input type="text" id="editUserName" class="modal-input">
+            <label>New Password</label>
+            <input type="password" id="editUserPassword" class="modal-input" placeholder="Leave empty to keep current">
+            <label>Level</label>
+            <input type="number" id="editUserLevel" class="modal-input">
+            <label>XP</label>
+            <input type="number" id="editUserXP" class="modal-input">
+            <label>Sub</label>
+            <select id="editUserSub" class="modal-input">
+                <option value="free">Free</option>
+                <option value="pro">Pro</option>
+            </select>
+            <button id="saveUserBtn" class="primary-btn full-width">Save Changes</button>
+            <button id="promoteUserBtn" class="secondary-btn full-width"
+                style="margin-top:10px; background-color: #ffd700; color: #000;">Promote to Admin</button>
+        </div>
+    </div>
+
+    <div id="addAdminModal" class="modal">
+        <div class="modal-content small">
+            <span class="close-modal"
+                onclick="document.getElementById('addAdminModal').style.display='none'">&times;</span>
+            <h2>Add New Admin</h2>
+            <label>Email</label>
+            <input type="email" id="newAdminEmail" class="modal-input" placeholder="admin@example.com">
+            <label>Password</label>
+            <input type="password" id="newAdminPassword" class="modal-input" placeholder="Strong password">
+            <button id="saveNewAdminBtn" class="primary-btn full-width">Create Admin</button>
+        </div>
+    </div>
+
+    <script src="admin.js?v=3"></script>
+</body>
+
+</html>

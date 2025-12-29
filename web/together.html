@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Friendix.ai - Together Space</title>
+
+    <!-- SEO & Site Name -->
+    <meta name="description"
+        content="Create a temporary, private space to chat with friends and AI. Together Spaces by Friendix.ai.">
+    <meta property="og:site_name" content="Friendix.ai">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Friendix.ai",
+      "alternateName": ["Friendix", "Friendix AI"],
+      "url": "https://friendix-ai.onrender.com/"
+    }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="together.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preload" as="image" href="backgrounds/together1.jpg">
+    <link rel="preload" as="image" href="backgrounds/together2.jpg">
+</head>
+
+<body>
+
+    <aside class="static-rail">
+        <div class="rail-logo-area">
+            <img src="/logo.png" alt="F" class="rail-logo-img">
+        </div>
+
+        <div class="rail-menu">
+            <a href="/chat" class="rail-item" id="railChatBtn" title="Back to Chat">
+                <i class='bx bx-message-rounded-dots'></i>
+            </a>
+            <div class="rail-item active" id="railTogetherBtn" title="Together Space">
+                <i class='bx bx-group'></i>
+            </div>
+        </div>
+
+        <div class="rail-footer">
+            <div class="rail-item" id="railSettingsBtn" title="Settings">
+                <i class='bx bx-cog'></i>
+            </div>
+
+            <a href="mailto:dhanush.business01@gmail.com?subject=Luvisa%20Feedback" class="rail-item"
+                title="Send Feedback">
+                <i class='bx bx-message-dots'></i>
+            </a>
+
+            <div class="rail-item" id="railProfileBtn" title="My Profile">
+                <img id="railUserAvatar" src="avatars/default_avatar.png" alt="User" class="rail-avatar">
+            </div>
+        </div>
+    </aside>
+
+    <div class="together-container">
+
+        <div id="formsView" class="forms-view">
+            <a href="/chat" class="back-link"><i class='bx bx-left-arrow-alt'></i> Back to Friendix</a>
+            <h1>Together Space</h1>
+            <p class="subtitle">Chat with friends and Luvisa in a private, temporary space (5 min).</p>
+
+            <div class="form-wrapper">
+
+                <form id="createSpaceForm" class="together-form" autocomplete="off">
+                    <h2>Create a Space</h2>
+                    <div class="form-field">
+                        <label for="createSpaceName">Space Name</label>
+                        <input type="text" id="createSpaceName" required autocomplete="off" name="space_name_create">
+                    </div>
+                    <div class="form-field">
+                        <label for="createSpacePassword">Password</label>
+                        <input type="password" id="createSpacePassword" required autocomplete="new-password"
+                            name="space_pass_create">
+                    </div>
+
+                    <div class="form-field-checkbox">
+                        <input type="checkbox" id="createWithAI" checked>
+                        <label for="createWithAI">Invite Luvisa (AI) to the chat</label>
+                    </div>
+
+                    <button type="submit" class="form-button">Create</button>
+                    <p id="createError" class="error-message"></p>
+                </form>
+
+                <form id="joinSpaceForm" class="together-form" autocomplete="off">
+                    <h2>Join a Space</h2>
+                    <div class="form-field">
+                        <label for="joinSpaceName">Space Name</label>
+                        <input type="text" id="joinSpaceName" required autocomplete="off" name="space_name_join">
+                    </div>
+                    <div class="form-field">
+                        <label for="joinSpacePassword">Password</label>
+                        <input type="password" id="joinSpacePassword" required autocomplete="new-password"
+                            name="space_pass_join">
+                    </div>
+                    <button type="submit" class="form-button">Join</button>
+                    <p id="joinError" class="error-message"></p>
+                </form>
+            </div>
+        </div>
+
+        <div id="chatView" class="chat-view" style="display: none;">
+            <header class="chat-header">
+                <div class="left-header">
+                    <img src="logo.png" alt="Together" class="profile-pic" />
+                    <div class="chat-title">
+                        <span id="spaceNameHeader">Together Space</span>
+                        <small id="timerDisplay">Time remaining...</small>
+                    </div>
+                </div>
+
+                <div class="right-header">
+                    <button id="leaveSpaceBtn" class="leave-space-btn" title="Leave Space">
+                        <i class='bx bx-exit'></i>
+                        <span>Leave</span>
+                    </button>
+                    <label class="ai-toggle" title="Toggle Luvisa's interaction">
+                        <span class="ai-toggle-label">Luvisa AI:</span>
+                        <input type="checkbox" id="aiToggleCheckbox">
+                        <span class="ai-toggle-slider"></span>
+                    </label>
+                </div>
+
+            </header>
+
+            <main id="chatbox" class="chatbox" role="log" aria-live="polite"></main>
+
+            <div class="input-area" role="region" aria-label="Message input">
+                <div class="input-bar-container">
+                    <input id="userInput" type="text" placeholder="Send a message to the group..." autocomplete="off" />
+                    <button id="sendBtn" aria-label="Send message">
+                        <i class='bx bxs-send'></i>
+                    </button>
+                </div>
+            </div>
+            <audio id="notifySound" src="notify.mp3" preload="auto"></audio>
+        </div>
+
+        <!-- Settings Dropdown (Copied from index.html structure) -->
+        <div class="settings-dropdown" id="settingsDropdown">
+            <div class="dropdown-header">
+                <h3>Settings</h3>
+            </div>
+            <div class="dropdown-item" id="menuThemeBtn">
+                <i class='bx bx-moon'></i>
+                <span>Appearance</span>
+                <i class='bx bx-chevron-right arrow'></i>
+            </div>
+        </div>
+
+        <!-- Theme Sub-Dropdown -->
+        <div class="settings-dropdown submenu" id="themeDropdown">
+            <div class="dropdown-header">
+                <i class='bx bx-arrow-back' id="themeBackBtn"></i>
+                <h3>Appearance</h3>
+            </div>
+            <div class="dropdown-item" id="themeLightBtn">
+                <i class='bx bx-sun'></i>
+                <span>Light</span>
+                <i class='bx bx-check check'></i>
+            </div>
+            <div class="dropdown-item" id="themeDarkBtn">
+                <i class='bx bx-moon'></i>
+                <span>Dark</span>
+                <i class='bx bx-check check'></i>
+            </div>
+            <div class="dropdown-item" id="themeSystemBtn">
+                <i class='bx bx-desktop'></i>
+                <span>System</span>
+                <i class='bx bx-check check'></i>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="together.js" defer></script>
+</body>
+
+</html>

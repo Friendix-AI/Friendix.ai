@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Companions - Friendix.ai</title>
+
+    <!-- SEO & Site Name -->
+    <meta name="description"
+        content="Meet your AI extensions: Deo the Coder, Victor the Life Coach, and more. Friendix.ai offers specialized companions for every need.">
+    <meta property="og:site_name" content="Friendix.ai">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Friendix.ai",
+      "alternateName": ["Friendix", "Friendix AI"],
+      "url": "https://friendix-ai.onrender.com/"
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource-variable/mona-sans@5.2.8/wght.min.css');
+
+        /* --- Sparkle Animations --- */
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #D6B6FF;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 1px #D6B6FF;
+            animation-name: sparkle;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .sparkle:nth-child(1) {
+            top: 20%;
+            left: 30%;
+            animation-duration: 3s;
+            animation-delay: 0.5s;
+        }
+
+        .sparkle:nth-child(2) {
+            top: 40%;
+            left: 80%;
+            animation-duration: 4s;
+            animation-delay: 1.2s;
+        }
+
+        .sparkle:nth-child(3) {
+            top: 60%;
+            left: 10%;
+            animation-duration: 2.5s;
+            animation-delay: 2s;
+        }
+
+        .sparkle:nth-child(4) {
+            top: 80%;
+            left: 50%;
+            animation-duration: 3.5s;
+            animation-delay: 0.2s;
+        }
+
+        .sparkle:nth-child(5) {
+            top: 10%;
+            left: 60%;
+            animation-duration: 4.5s;
+            animation-delay: 1.5s;
+        }
+
+        .sparkle:nth-child(6) {
+            top: 50%;
+            left: 40%;
+            animation-duration: 3s;
+            animation-delay: 2.8s;
+        }
+
+        .sparkle:nth-child(7) {
+            top: 70%;
+            left: 90%;
+            animation-duration: 5s;
+            animation-delay: 0.8s;
+        }
+
+        .sparkle:nth-child(8) {
+            top: 30%;
+            left: 5%;
+            animation-duration: 3.8s;
+            animation-delay: 1.8s;
+        }
+
+        .sparkle:nth-child(9) {
+            top: 90%;
+            left: 20%;
+            animation-duration: 2.7s;
+            animation-delay: 0.1s;
+        }
+
+        .sparkle:nth-child(10) {
+            top: 5%;
+            left: 95%;
+            animation-duration: 4.2s;
+            animation-delay: 2.2s;
+        }
+
+        /* --- Page Styles --- */
+        body {
+            font-family: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #000;
+            color: #cdd5e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 25px 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #A98EFF;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1,
+        h2 {
+            color: #fff;
+            margin-top: 1em;
+            margin-bottom: 0.75em;
+            font-weight: 700;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            /* Space between emoji and text */
+        }
+
+        p {
+            margin-bottom: 1em;
+            font-size: 1.1em;
+        }
+
+        .intro-p {
+            font-size: 1.25em;
+            color: #cdd5e0;
+            text-align: center;
+            margin-bottom: 3em;
+        }
+
+        /* --- Companion Card Grid --- */
+        .companion-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            /* Single column */
+            gap: 1.5rem;
+            perspective: 1000px;
+        }
+
+        .companion-card {
+            background: rgba(18, 18, 38, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 24px;
+            transition: transform 0.1s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .companion-card:hover {
+            border-color: rgba(169, 142, 255, 0.7);
+            box-shadow: 0 0 30px rgba(169, 142, 255, 0.3);
+        }
+
+        .coming-soon {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sparkle-background">
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+    </div>
+
+    <div class="container">
+        <a href="web.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="content-wrapper">
+            <h1>Our Companions</h1>
+            <p class="intro-p">
+                Friendix isn't just one AI. It's a team of specialized companions, each designed to help you in a unique
+                way. Meet the friends who are here for you.
+            </p>
+
+            <div class="companion-grid">
+
+                <div class="companion-card">
+                    <h2>Luvisa<span class="coming-soon">Loyal Best Friend</span></h2>
+                    <p>Luvisa is your primary AI companion, designed for empathetic, open-ended conversation. She's
+                        warm, gentle, and always ready to listen. Whether you want to share your day, your dreams, or
+                        just what's on your mind, Luvisa is here for you 24/7.</p>
+                </div>
+
+                <div class="companion-card">
+                    <h2>Together Space 🤝</h2>
+                    <p>This isn't an AI. It's a temporary, private, and secure chat room for you and your real-world
+                        friends. Create a space, share the link, and chat. All messages are permanently deleted 5
+                        minutes after the space is created for your privacy.</p>
+                </div>
+
+                <div class="companion-card">
+                    <h2>Deo<span class="coming-soon">Senior Software Architect</span></h2>
+                    <p>Your personal coding assistant. The Coder will be able to help you debug code, write new
+                        functions, explain complex concepts, and be your partner for all your development projects.</p>
+                </div>
+
+                <!-- <div class="companion-card">
+                    <h2>Personal Assistant 🤖<span class="coming-soon">Coming Soon</span></h2>
+                    <p>Get organized and stay on top of your tasks. Your Personal Assistant will help you set reminders, manage your schedule, draft emails, and handle your day-to-day planning.</p>
+                </div> -->
+
+                <div class="companion-card">
+                    <h2>Victor<span class="coming-soon">Personal Growth Guide</span></h2>
+                    <p>Focused on your growth. The Life Coach will help you set goals, build better habits, and talk
+                        through challenges. It's a dedicated companion for your personal development journey.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 3D Parallax Tilt Effect ---
+        document.addEventListener("DOMContentLoaded", function () {
+            const tiltCards = document.querySelectorAll('.companion-card');
+
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const { width, height } = rect;
+
+                    const rotateX = (y / height - 0.5) * -20; // Max 10deg
+                    const rotateY = (x / width - 0.5) * 20;  // Max 10deg
+
+                    card.style.transform = `scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'transform 0.1s ease';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transition = 'transform 0.4s ease, box-shadow 0.3s ease, border-color 0.3s ease';
+                    card.style.transform = 'scale(1) rotateX(0) rotateY(0)';
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

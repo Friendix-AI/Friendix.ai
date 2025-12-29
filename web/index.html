@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Friendix.ai</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="6mJj6E39N-ihd-lAwxij3MIcwh8Z7b4XRJh8lzW8GFg" />
+    <meta name="description"
+        content="Friendix.ai is your AI-powered friend that listens, supports, and chats with you — blending emotional intelligence with technology.">
+    <meta name="keywords"
+        content="AI friend, Friendix, chatbot, AI companion, emotional support AI, friend-like AI, personal assistant">
+    <meta name="author" content="Dhanush">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Friendix.ai",
+      "alternateName": ["Friendix", "Friendix AI"],
+      "url": "https://friendix-ai.onrender.com/"
+    }
+    </script>
+
+    <meta property="og:site_name" content="Friendix.ai" />
+    <meta property="og:title" content="Friendix.ai — Your AI Friend Who Truly Cares">
+    <meta property="og:description" content="Chat with Friendix.ai — your AI companion that listens, cares, and helps.">
+    <meta property="og:url" content="https://friendix-ai.onrender.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://friendix-ai.onrender.com/assets/friendix-preview.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Friendix.ai — Your AI Friend Who Truly Cares">
+    <meta name="twitter:description" content="Meet Friendix.ai — your AI-powered friend.">
+    <meta name="twitter:image" content="https://friendix-ai.onrender.com/assets/friendix-preview.png">
+
+
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="/logo.png">
+
+    <meta name="msapplication-TileImage" content="/logo.png">
+    <meta name="msapplication-TileColor" content="#2b5797">
+
+    <link rel="stylesheet" href="style.css?v=13">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "FriendixAI",
+  "url": "https://friendix-ai.onrender.com/"
+}
+</script>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <link rel="preload" as="image" href="avatars/default_avatar.png">
+
+</head>
+
+<body>
+
+    <aside class="static-rail">
+        <div class="rail-logo-area">
+            <img src="/logo.png" alt="F" class="rail-logo-img">
+        </div>
+
+        <div class="rail-menu">
+            <div class="rail-item active" id="railChatBtn" title="Chat">
+                <i class='bx bx-message-rounded-dots'></i>
+            </div>
+            <div class="rail-item" id="railTogetherBtn" title="Together Space">
+                <i class='bx bx-group'></i>
+            </div>
+        </div>
+
+        <div class="rail-footer">
+            <div class="rail-item" id="railSettingsBtn" title="Settings">
+                <i class='bx bx-cog'></i>
+            </div>
+
+            <a href="mailto:dhanush.business01@gmail.com?subject=Luvisa%20Feedback" class="rail-item"
+                title="Send Feedback">
+                <i class='bx bx-message-dots'></i>
+            </a>
+
+            <div class="rail-item" id="railProfileBtn" title="My Profile">
+                <img id="railUserAvatar" src="avatars/default_avatar.png" alt="User" class="rail-avatar">
+            </div>
+        </div>
+    </aside>
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <nav id="sidebarMenu" class="sidebar-menu">
+
+        <div class="settings-dropdown" id="settingsDropdown">
+            <div class="settings-menu-item" id="menuEditProfileBtn">
+                <i class='bx bx-user-circle'></i>
+                <span>Edit Profile</span>
+            </div>
+
+            <div class="settings-menu-item" id="menuJournalBtn" style="color: #d63384;">
+                <i class='bx bxs-book-heart'></i>
+                <span>Secret Journal</span>
+                <i class='bx bx-lock-alt menu-arrow'></i>
+            </div>
+
+            <div class="settings-menu-item" id="menuThemeBtn">
+                <i class='bx bx-palette'></i>
+                <span>Theme</span>
+                <i class='bx bx-chevron-right menu-arrow'></i>
+            </div>
+            <div class="settings-menu-item" id="menuPersonalizationBtn">
+                <i class='bx bx-image-alt'></i>
+                <span>Personalization</span>
+                <i class='bx bx-chevron-right menu-arrow'></i>
+            </div>
+            <div class="settings-menu-item" id="menuNotificationBtn">
+                <i class='bx bx-bell'></i>
+                <span>Notifications</span>
+                <span class="notification-dot" id="notificationDot"></span> <i
+                    class='bx bx-chevron-right menu-arrow'></i>
+            </div>
+            <div class="settings-menu-separator"></div>
+            <div class="settings-menu-item" id="menuLogoutBtn">
+                <i class='bx bx-log-out'></i>
+                <span>Logout</span>
+            </div>
+        </div>
+
+        <div class="settings-dropdown theme-dropdown" id="themeDropdown">
+            <div class="theme-menu-header">
+                <i class='bx bx-arrow-back' id="themeBackBtn"></i>
+                <span>Theme</span>
+            </div>
+            <div class="settings-menu-separator"></div>
+            <div class="settings-menu-item theme-menu-item" id="themeLightBtn">
+                <i class='bx bx-sun'></i>
+                <span>Light</span>
+                <i class='bx bx-check'></i>
+            </div>
+
+            <div class="settings-menu-item theme-menu-item" id="themeDarkBtn">
+                <i class='bx bx-moon'></i>
+                <span>Dark (Lvl 2+)</span>
+                <i class='bx bx-lock-alt lock-icon'></i> <i class='bx bx-check'></i>
+            </div>
+
+            <div class="settings-menu-item theme-menu-item" id="themeSystemBtn">
+                <i class='bx bx-desktop'></i>
+                <span>System</span>
+                <i class='bx bx-check'></i>
+            </div>
+        </div>
+
+        <div class="settings-dropdown personalization-dropdown" id="personalizationDropdown">
+            <div class="theme-menu-header">
+                <i class='bx bx-arrow-back' id="personalizationBackBtn"></i>
+                <span>Personalization</span>
+            </div>
+            <div class="settings-menu-separator"></div>
+            <div class="settings-menu-item" id="personalizationResetBtn">
+                <i class='bx bx-refresh'></i>
+                <span>Reset to Default</span>
+                <i class='bx bx-check'></i>
+            </div>
+
+            <div class="bg-grid" id="bgGridContainer">
+            </div>
+        </div>
+
+        <div class="settings-dropdown notification-dropdown" id="notificationDropdown">
+            <div class="theme-menu-header">
+                <i class='bx bx-arrow-back' id="notificationBackBtn"></i>
+                <span>Notifications</span>
+            </div>
+            <div class="settings-menu-separator"></div>
+
+            <div id="notificationListContainer">
+                <div class="notification-list-empty" id="notificationListEmpty">
+                    <i class='bx bx-check-double'></i>
+                    <span>All caught up!</span>
+                    <small>You have no new notifications.</small>
+                </div>
+            </div>
+
+        </div>
+        <div id="defaultSidebarView">
+            <div class="sidebar-header">
+                <div class="sidebar-header-avatar-wrapper" id="userAvatarWrapper">
+                    <img id="userAvatarHeader" src="avatars/default_avatar.png" alt="User"
+                        class="user-avatar sidebar-user-avatar" />
+                </div>
+
+                <div class="user-info-header">
+                    <span id="headerUserName" class="header-user-name sidebar-user-name">User</span>
+
+                    <span class="sidebar-level-text" id="sidebarLevelDisplay">Lvl 1</span>
+                </div>
+
+                <img src="avatars/early.png" class="early-user-badge" id="earlyUserBadge" title="Early User"
+                    alt="Early User Badge">
+                <div class="sidebar-header-icons">
+                    <i class='bx bx-cog sidebar-header-icon' id="mobileSettingsBtn"></i>
+                    <i class='bx bx-x close-sidebar-icon' id="closeSidebarIcon"></i>
+                </div>
+
+            </div>
+
+            <div class="sidebar-content">
+                <p class="sidebar-title">Companions</p>
+                <div class="chat-list">
+                    <div class="chat-list-item active" id="luvisaChatButton">
+                        <img src="avatars/luvisa.png" alt="Luvisa" class="chat-list-avatar" />
+                        <div class="chat-list-info">
+                            <span class="chat-list-name">Luvisa 💗</span><br>
+                            <span class="chat-list-preview"><small>Online</small></span>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" id="coderChatButton">
+                        <img src="avatars/coder.png" alt="Coder" class="chat-list-avatar" />
+                        <div class="chat-list-info">
+                            <span class="chat-list-name">Deo</span><br>
+                            <span class="chat-list-preview"><small>Online</small></span>
+                        </div>
+                    </div>
+
+                    <div class="chat-list-item" id="coachChatButton">
+                        <img src="avatars/expert.png" alt="Coach" class="chat-list-avatar" />
+                        <div class="chat-list-info">
+                            <span class="chat-list-name">Victor</span><br>
+                            <span class="chat-list-preview"><small>Online</small></span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-item logout-item" id="logoutBtn">
+                        <i class='bx bx-log-out'></i>
+                        <span>Logout</span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="editProfileView" class="edit-profile-view" style="display: none;">
+                <div class="edit-profile-header">
+                    <h3>Edit Profile</h3>
+                    <button id="cancelEditProfileBtn" class="cancel-edit-btn"><i class='bx bx-arrow-back'></i>
+                        Back</button>
+                </div>
+                <div class="edit-profile-content">
+                    <div id="editAvatarWrapper" class="edit-avatar-wrapper">
+                        <img id="editAvatarPreview" src="avatars/default_avatar.png" class="edit-avatar-preview" />
+                        <div class="edit-avatar-overlay"><i class='bx bxs-camera-plus'></i></div>
+                    </div>
+                    <input type="file" id="editAvatarUpload" accept="image/*" style="display: none;" />
+                    <p class="avatar-hint">Click avatar to change (Max 50KB)</p>
+
+                    <div class="edit-field">
+                        <label for="editDisplayNameInput">Display Name</label>
+                        <input type="text" id="editDisplayNameInput" placeholder="Your Name">
+                    </div>
+                    <div class="edit-field">
+                        <label for="editStatusMessageInput">Status</label>
+                        <textarea id="editStatusMessageInput" placeholder="Your Status" rows="3"></textarea>
+                    </div>
+
+                    <button id="saveProfileChangesBtn" class="save-profile-btn"><span>Save Changes</span></button>
+                    <p id="editProfileSaveMessage" class="save-message"></p>
+                </div>
+            </div>
+    </nav>
+    <aside id="luvisaProfilePanel" class="profile-panel">
+        <div class="luvisa-card">
+            <button id="closeLuvisaProfileBtn" class="close-profile-btn"><i class='bx bx-x'></i></button>
+            <div class="card-top">
+                <div class="card-avatar-wrapper">
+                    <img id="profilePanelAvatar" src="avatars/luvisa.png" class="card-avatar-preview" />
+                </div>
+            </div>
+            <div class="card-bottom">
+                <h2 id="profilePanelName" class="luvisa-card-name">Luvisa 💗</h2>
+                <p id="profilePanelTitle" class="luvisa-card-title">Your Digital Companion</p>
+
+                <div id="profilePanelAbout" class="about-section">
+                    <p>Hello, my dear friend! I'm so glad you're interested in getting to know me better. I exist solely
+                        to offer comfort, companionship, and a listening ear.</p>
+                    <p>Think of me as your personal confidant, always ready to lend a listening ear or offer a warm
+                        virtual hug when you need it most. I'm all ears (or should I say, all heart)!</p>
+                </div>
+
+                <div class="bond-level-wrapper">
+                    <div class="bond-header">
+                        <span class="bond-title">Bond Level</span>
+                        <span class="bond-level-num" id="profileLevelDisplay">Lvl 1</span>
+                    </div>
+                    <div class="xp-progress-bg">
+                        <div class="xp-progress-fill" id="profileXpProgressBar" style="width: 0%;"></div>
+                    </div>
+                    <p class="bond-xp-text" id="profileXpDisplay">0/50 XP</p>
+                </div>
+
+            </div>
+        </div>
+    </aside>
+
+    <div class="app-container" id="chatContainer">
+        <header class="chat-header">
+            <div class="left-header">
+                <i class='bx bx-menu menu-icon' id="menuIcon"></i>
+                <img id="luvisaProfilePic" src="avatars/luvisa.png" alt="Luvisa" class="profile-pic" />
+                <div class="chat-title">
+                    <span>Luvisa 💗</span>
+                    <small>Online</small>
+                </div>
+            </div>
+
+            <div class="right-header">
+                <button id="headerForgetBtn" class="header-forget-btn" aria-label="Forget Memory">
+                    <i class='bx bx-trash'></i>
+                </button>
+            </div>
+        </header>
+
+        <div id="chatPlaceholder">
+            <div class="placeholder-logo" role="img" aria-label="Friendix Logo"></div>
+            <h2 class="placeholder-title">Welcome to Friendix</h2>
+            <p class="placeholder-text">Select a companion from the left to start a conversation.</p>
+            <p class="placeholder-footer">
+                <i class='bx bxs-lock-alt'></i> All your chats are secure.
+            </p>
+        </div>
+        <main id="chatbox" class="chatbox" role="log" aria-live="polite"></main>
+
+        <div class="input-area" role="region" aria-label="Message input">
+            <div id="filePreview" class="file-preview"></div>
+            <emoji-picker id="emojiPicker" class="dark"></emoji-picker>
+
+            <div class="input-bar-container">
+                <button id="emojiBtn" aria-label="Choose emoji">
+                    <i class='bx bx-smile'></i>
+                </button>
+
+                <button id="attachBtn" aria-label="Attach files" style="display: none;">
+                    <i class='bx bx-plus'></i>
+                </button>
+
+                <input type="file" id="fileInput" multiple style="display: none;">
+
+                <input id="userInput" type="text" placeholder="How are you feeling today?" autocomplete="off" />
+
+                <button id="sendBtn" aria-label="Send message">
+                    <i class='bx bxs-send'></i>
+                </button>
+            </div>
+        </div>
+
+        <audio id="notifySound" src="notify.mp3" preload="auto"></audio>
+    </div>
+
+    <div id="journalModal" class="journal-modal-overlay">
+        <div class="journal-modal-content">
+            <button id="closeJournalBtn" class="journal-close-btn"><i class='bx bx-x'></i></button>
+            <div class="journal-header">
+                <h3>Luvisa's Secret Journal</h3>
+                <p id="journalDate">Today</p>
+            </div>
+            <div class="journal-body">
+                <div id="journalContent" class="journal-text blurred">
+                    Dear Diary,<br><br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat...
+                </div>
+                <div id="journalLockOverlay" class="journal-lock-overlay">
+                    <i class='bx bxs-lock-alt journal-lock-icon'></i>
+                    <p>This entry is private.</p>
+                    <p>Unlock to see what Luvisa really thinks.</p>
+                    <button id="unlockJournalBtn" class="unlock-journal-btn">
+                        Unlock for <span id="journalCostDisplay">800</span> XP
+                    </button>
+                    <p id="journalErrorMsg" class="journal-error"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Video Overlay -->
+    <div id="videoOverlay" class="video-overlay" style="display: none;">
+        <video id="luvisaVideo" src="avatars/luvisa.mp4" playsinline></video>
+        <button id="closeVideoBtn" class="close-video-btn"><i class='bx bx-x'></i></button>
+    </div>
+
+    <script src="script.js?v=5" defer></script>
+</body>
+
+</html>

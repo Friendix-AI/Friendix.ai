@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify OTP - Friendix.ai</title>
+  
+  <meta name="description" content="Friendix.ai is your AI-powered friend that listens, supports, and chats with you — blending emotional intelligence with technology.">
+  <meta name="keywords" content="AI friend, Friendix, chatbot, AI companion, emotional support AI, friend-like AI, personal assistant">
+  <meta name="author" content="Dhanush">
+  
+  <meta property="og:title" content="Friendix.ai — Your AI Friend Who Truly Cares">
+  <meta property="og:description" content="Chat with Friendix.ai — your AI companion that listens, cares, and helps.">
+  <meta property="og:url" content="https://friendix-ai.onrender.com">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://friendix-ai.onrender.com/assets/friendix-preview.png">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Friendix.ai — Your AI Friend Who Truly Cares">
+  <meta name="twitter:description" content="Meet Friendix.ai — your AI-powered friend.">
+  <meta name="twitter:image" content="https://friendix-ai.onrender.com/assets/friendix-preview.png">
+
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="logo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Friendix.ai",
+    "url": "https://friendix-ai.onrender.com/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Friendix.ai",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://friendix-ai.onrender.com/logo.png", 
+        "width": 192, 
+        "height": 192 
+      }
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+
+    <link rel="preload" as="image" href="backgrounds/1.jpg">
+    <link rel="preload" as="image" href="logo.png">
+
+</head>
+<body>
+
+    <div class="auth-wrapper">
+
+        <div class="info-panel">
+            <div class="info-panel-content">
+                <img src="logo.png" class="info-logo" alt="Friendix Logo">
+                <div class="tagline-group">
+                    <h2>Your AI Friend Who Truly Cares.</h2>
+                    <p>Chat with Friendix.ai — your AI companion that listens, cares, and helps.</p>
+                    <div class="carousel-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-container">
+            
+            <h2>Verify OTP</h2>
+            
+            <p class="sub-header">
+                Enter the 6-digit code sent to your email.
+            </p>
+
+            <div class="auth-box">
+
+                <div class="input-group">
+                    <i class="bx bxs-key"></i>
+                    <input type="text" id="otp" placeholder="Enter OTP" required>
+                </div>
+
+                <p id="msg" class="auth-message"></p>
+                
+                <button id="verifyOtpBtn"><span>Verify OTP</span></button>
+
+                <p class="auth-terms" style="text-align: center; margin-top: 20px;">
+                   <a href="login.html">Cancel</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById("verifyOtpBtn");
+        const msg = document.getElementById("msg");
+        
+        // Attach click event to the button
+        btn.onclick = function() { verifyOTP(); };
+
+        function verifyOTP() {
+            const email = localStorage.getItem("reset_email");
+            const otp = document.getElementById("otp").value;
+
+            if (!otp) {
+                msg.innerText = "Please enter the OTP.";
+                return;
+            }
+
+            btn.classList.add("loading"); // Add loading spinner
+            msg.innerText = "Verifying...";
+
+            fetch("/api/verify_reset_otp", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ email, otp })
+            })
+            .then(res => res.json())
+            .then(data => {
+                msg.innerText = data.message;
+                if (data.success) {
+                    // SUCCESS: Go to the final reset password page
+                    setTimeout(()=>{ window.location = "reset_password.html"; }, 1200);
+                } else {
+                    btn.classList.remove("loading"); // Remove spinner on failure
+                }
+            })
+            .catch(err => {
+                msg.innerText = "Network error. Please try again.";
+                btn.classList.remove("loading"); // Remove spinner on error
+            });
+        }
+    </script>
+</body>
+</html>

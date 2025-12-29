@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Friendix.ai</title>
+
+    <!-- SEO & Site Name -->
+    <meta property="og:site_name" content="Friendix.ai">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Friendix.ai",
+      "alternateName": ["Friendix", "Friendix AI"],
+      "url": "https://friendix-ai.onrender.com/"
+    }
+    </script>
+    <style>
+        /* --- Sparkle Animations --- */
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle-background {
+            position: fixed;
+            /* Fixed position to cover viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            /* Place it behind all content */
+            pointer-events: none;
+            overflow: hidden;
+            background-color: #000;
+            /* Set background to black */
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #D6B6FF;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 1px #D6B6FF;
+            animation-name: sparkle;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .sparkle:nth-child(1) {
+            top: 20%;
+            left: 30%;
+            animation-duration: 3s;
+            animation-delay: 0.5s;
+        }
+
+        .sparkle:nth-child(2) {
+            top: 40%;
+            left: 80%;
+            animation-duration: 4s;
+            animation-delay: 1.2s;
+        }
+
+        .sparkle:nth-child(3) {
+            top: 60%;
+            left: 10%;
+            animation-duration: 2.5s;
+            animation-delay: 2s;
+        }
+
+        .sparkle:nth-child(4) {
+            top: 80%;
+            left: 50%;
+            animation-duration: 3.5s;
+            animation-delay: 0.2s;
+        }
+
+        .sparkle:nth-child(5) {
+            top: 10%;
+            left: 60%;
+            animation-duration: 4.5s;
+            animation-delay: 1.5s;
+        }
+
+        .sparkle:nth-child(6) {
+            top: 50%;
+            left: 40%;
+            animation-duration: 3s;
+            animation-delay: 2.8s;
+        }
+
+        .sparkle:nth-child(7) {
+            top: 70%;
+            left: 90%;
+            animation-duration: 5s;
+            animation-delay: 0.8s;
+        }
+
+        .sparkle:nth-child(8) {
+            top: 30%;
+            left: 5%;
+            animation-duration: 3.8s;
+            animation-delay: 1.8s;
+        }
+
+        .sparkle:nth-child(9) {
+            top: 90%;
+            left: 20%;
+            animation-duration: 2.7s;
+            animation-delay: 0.1s;
+        }
+
+        .sparkle:nth-child(10) {
+            top: 5%;
+            left: 95%;
+            animation-duration: 4.2s;
+            animation-delay: 2.2s;
+        }
+
+        .sparkle:nth-child(11) {
+            top: 95%;
+            left: 85%;
+            animation-duration: 3.2s;
+            animation-delay: 0.7s;
+        }
+
+        .sparkle:nth-child(12) {
+            top: 85%;
+            left: 15%;
+            animation-duration: 4.8s;
+            animation-delay: 1.3s;
+        }
+
+        .sparkle:nth-child(13) {
+            top: 65%;
+            left: 65%;
+            animation-duration: 2.8s;
+            animation-delay: 2.1s;
+        }
+
+        .sparkle:nth-child(14) {
+            top: 35%;
+            left: 35%;
+            animation-duration: 3.6s;
+            animation-delay: 0.3s;
+        }
+
+        .sparkle:nth-child(15) {
+            top: 15%;
+            left: 75%;
+            animation-duration: 4.3s;
+            animation-delay: 1.6s;
+        }
+
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            /* === UPDATED: Black background, light text === */
+            background-color: #000;
+            color: #cdd5e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 25px;
+            /* === UPDATED: Dark card style === */
+            background-color: rgba(17, 17, 37, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #A98EFF;
+            /* Updated color */
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #fff;
+            /* Updated color */
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        p,
+        ul {
+            margin-bottom: 1em;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #A98EFF;
+            /* Updated color */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .last-updated {
+            text-align: center;
+            font-size: 0.9em;
+            color: #999;
+            /* Updated color */
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sparkle-background">
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+    </div>
+
+    <div class="container">
+        <a href="web.html" class="back-link">&larr; Back to Home</a>
+
+        <h1>Terms of Service for Friendix.ai</h1>
+        <p class="last-updated">Last Updated: December 15, 2025</p>
+
+        <h3>1. Agreement to Terms</h3>
+        <p>By accessing or using our web application, Friendix.ai (the "Service"), you agree to be bound by these Terms
+            of Service ("Terms") and our Privacy Policy. If you do not agree to these Terms, you may not use the
+            Service.</p>
+
+        <h3>2. The Service</h3>
+        <p>Friendix.ai provides a conversational AI service allowing users to chat with various AI companions, including
+            "Luvisa", and record personal thoughts in a "Secret Journal". It also allows users to create temporary,
+            password-protected group chats called "Together Spaces".
+        </p>
+
+        <h3>3. User Accounts</h3>
+        <p>To use our Service, you must create an account by providing a valid email address and creating a password.
+            You are responsible for safeguarding your password and for any activities or actions under your account. You
+            agree to notify us immediately of any unauthorized use of your account.</p>
+
+        <h3>4. User Content</h3>
+        <p>You are responsible for all the content, including text, messages, journal entries, and profile information
+            (like your display
+            name, status, and avatar) that you provide to the Service ("User Content").</p>
+        <p>You retain ownership of your User Content, but you grant us a worldwide, non-exclusive, royalty-free license
+            to use, store, and process this content solely for the purpose of operating, providing, and improving the
+            Service (e.g., to save your chat history and provide it to our AI provider for generating responses).</p>
+        <p>We are not responsible for the accuracy or nature of the content generated by the AI.</p>
+
+        <h3>5. Together Spaces</h3>
+        <p>"Together Spaces" are temporary and designed for ephemeral group conversations. Any chat history and data
+            associated with a "Together Space" are automatically and permanently deleted 5 minutes after its creation.
+            You are responsible for any content shared within these spaces.</p>
+
+        <h3>6. Prohibited Conduct</h3>
+        <p>You agree not to use the Service to:</p>
+        <ul>
+            <li>Violate any applicable national or international law or regulation.</li>
+            <li>Send any harassing, abusive, threatening, or obscene material.</li>
+            <li>Transmit any viruses, worms, or other malicious software.</li>
+            <li>Attempt to gain unauthorized access to our systems, database (MongoDB), or other user accounts.</li>
+            <li>Use the Service to generate content that infringes on any proprietary right of any party.</li>
+            <li>Scrape, reverse-engineer, or otherwise attempt to extract the source code of the Service.</li>
+        </ul>
+
+        <h3>7. Third-Party Services</h3>
+        <p>Our Service relies on third-party services to function. Your use of our Service is also subject to their
+            terms and policies:</p>
+        <ul>
+            <li><strong>AI Provider (Groq):</strong> We use Groq to generate AI responses. You agree to adhere to their
+                acceptable use policies.</li>
+            <li><strong>Email Provider (Brevo):</strong> We use Brevo to send you account-related emails like OTPs.</li>
+            <li><strong>Database & Authentication:</strong> We use MongoDB and Firebase to securely store your data and
+                manage your account.</li>
+        </ul>
+
+        <h3>8. Termination</h3>
+        <p>We may terminate or suspend your access to the Service immediately, without prior notice or liability, for
+            any reason whatsoever, including, without limitation, if you breach these Terms.</p>
+        <p>You may terminate your account at any time by contacting us at <strong>dhanush.business01@gmail.com</strong>
+            and requesting account deletion.</p>
+
+        <h3>9. Disclaimers</h3>
+        <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis. We make no warranty that the Service will be
+            uninterrupted, secure, or error-free. The AI-generated responses are for entertainment purposes only and
+            should not be considered as medical, legal, or financial advice.</p>
+
+        <h3>10. Limitation of Liability</h3>
+        <p>In no event shall Friendix.ai, nor its directors, employees, or partners, be liable for any indirect,
+            incidental, special, consequential, or punitive damages, including without limitation, loss of profits,
+            data, or other intangibles, arising out of or in connection with your use of the Service.</p>
+
+        <h3>11. Changes to Terms</h3>
+        <p>We reserve the right to modify these Terms at any time. If we make material changes, we will notify you by
+            posting the updated terms on this page and updating the "Last Updated" date. By continuing to use the
+            Service after those changes become effective, you agree to be bound by the revised terms.</p>
+
+        <h3>12. Contact Us</h3>
+        <p>If you have any questions about these Terms, please contact us at:</p>
+        <p><strong>dhanush.business01@gmail.com</strong></p>
+
+    </div>
+
+</body>
+
+</html>

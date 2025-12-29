@@ -1,0 +1,527 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+    background-image: url('backgrounds/profile_bg.jpg'); /* You can change this path */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Prevents scroll */
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    animation: fadeIn 0.8s ease-in-out;
+    background: transparent;
+    padding: 20px;
+}
+
+.profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -7px;
+    position: relative;
+}
+
+/* --- The Main ID Card --- */
+.id-card {
+    width: 320px;
+    min-height: 480px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* --- Top Gradient Section --- */
+.card-top {
+    height: 30%; 
+    min-height: 144px;
+    background: linear-gradient(135deg, #00c9ff, #92fe9d);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    color: white;
+}
+.card-top::before, .card-top::after {
+    content: ''; position: absolute; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1); z-index: 0;
+}
+.card-top::before { width: 150px; height: 150px; top: -50px; left: -50px; }
+.card-top::after { width: 200px; height: 200px; bottom: -80px; right: -60px; }
+
+.card-top-header {
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+    font-size: 0.9em; 
+    font-weight: 500; 
+    z-index: 1;
+    width: 100%;
+    padding: 0 20px;
+}
+.luvisa-logo-small { width: 24px; height: 24px; border-radius: 50%; }
+
+.id-card-share-btn {
+    margin-left: auto;
+    font-size: 1.2rem;
+    color: #fff;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 2;
+}
+.id-card-share-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+body.public-view .id-card-share-btn {
+    display: none;
+}
+
+
+/* --- Overlapping Avatar --- */
+.avatar-wrapper {
+    position: absolute;
+    /* UPDATED: Moved upwards to 20% (was 30%) */
+    top: 18%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 110px; height: 110px; border-radius: 50%;
+    border: 5px solid white; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    cursor: pointer; z-index: 10; overflow: hidden;
+}
+.avatar-preview { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+
+.avatar-overlay {
+    display: none;
+}
+.avatar-wrapper:hover .avatar-preview { 
+    transform: none;
+}
+
+
+/* --- Bottom White Section --- */
+.card-bottom {
+    flex-grow: 1;
+    background: #ffffff;
+    /* UPDATED: Reduced padding to 40px to close gap (was 80px) */
+    padding: 10px 30px 20px 30px; 
+    display: flex;
+    flex-direction: column;
+    color: #333;
+}
+
+/* --- User Details Section --- */
+.user-details {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.card-name, .card-status {
+    background: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    transition: all 0.2s ease;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin: 0;
+    padding-right: 28px; 
+}
+
+.card-name[readonly], .card-status[readonly] {
+    cursor: default;
+    color: #222;
+}
+.card-status[readonly] {
+    color: #777;
+}
+
+
+.card-name {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.card-status {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: #777;
+    resize: none;
+    min-height: 24px;
+    overflow-y: hidden;
+}
+
+.card-name:not([readonly]), .card-status:not([readonly]) {
+    background: #f0f0f0;
+    box-shadow: 0 0 0 2px #00c9ff;
+    cursor: text;
+}
+.card-name:not([readonly]) + .edit-icon, 
+.card-status:not([readonly]) + .edit-icon {
+    opacity: 1;
+    color: #00c9ff;
+}
+
+
+.editable-field {
+    position: relative;
+}
+.edit-icon {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 1; 
+    transition: all 0.2s ease;
+}
+body.public-view .edit-icon {
+    display: none;
+}
+
+/* --- Bond Level Styling --- */
+.bond-level-container {
+    width: 100%;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #eee;
+}
+
+.bond-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.bond-title {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.bond-level-val {
+    font-size: 0.85em;
+    font-weight: 700;
+    color: #00c9ff;
+    background: rgba(0, 201, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 8px;
+}
+
+.bond-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bond-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00c9ff, #92fe9d);
+    border-radius: 4px;
+    transition: width 0.5s ease-out;
+}
+
+.bond-xp-text {
+    font-size: 0.75em;
+    color: #888;
+    text-align: right;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+
+.info-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 15px;
+    font-size: 0.85em;
+    margin-top: auto; 
+}
+.info-grid span:nth-child(odd) { 
+    font-weight: 500; 
+    color: #999; 
+    text-transform: uppercase;
+    font-size: 0.75em;
+}
+.info-grid span:nth-child(even) { font-weight: 500; text-align: right; }
+
+/* --- Action Buttons (Below Card) --- */
+.button-group { 
+    display: flex; 
+    gap: 15px; 
+    width: 320px; 
+}
+button { 
+    flex-grow: 1; 
+    border: none; 
+    border-radius: 12px; 
+    padding: 12px;
+    font-size: 1em; 
+    font-weight: 600; 
+    font-family: 'Poppins', sans-serif; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    position: relative; 
+    overflow: hidden; 
+}
+.primary-btn { background: linear-gradient(135deg, #00c9ff, #92fe9d); color: white; box-shadow: 0 4px 15px rgba(0, 201, 255, 0.4); }
+.primary-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 201, 255, 0.6); }
+
+.secondary-btn { 
+    background: #ffffff; 
+    color: #333; 
+    border: 1px solid #e0e0e0;
+}
+.secondary-btn:hover { 
+    background: #f7f7f7; 
+}
+
+.save-message { 
+    text-align: center; 
+    min-height: 18px; 
+    font-size: 0.9em;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.save-message.success { 
+    color: #92fe9d;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.save-message.error { 
+    color: #ff8a8a;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading Spinner */
+button.loading span { visibility: hidden; opacity: 0; }
+button.loading::after {
+    content: ''; position: absolute; width: 20px; height: 20px; top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+    border: 3px solid transparent; border-top-color: #ffffff; border-radius: 50%; animation: spin 1s ease infinite;
+}
+
+@keyframes spin { from { transform: rotate(0turn); } to { transform: rotate(1turn); } }
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+/* --- Gold Ribbon Badge Style --- */
+.early-user-badge {
+    position: relative;
+    background: linear-gradient(to right, #fceabb, #f8b500, #fceabb);
+    color: #614a1a;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 15px;
+    margin: 2px auto 0 auto;
+    display: inline-block;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.15);
+}
+.early-user-badge::before,
+.early-user-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 8px 12px 8px;
+}
+.early-user-badge::before {
+    left: -16px;
+    border-color: #f8b500 #f8b500 #f8b500 transparent;
+}
+.early-user-badge::after {
+    right: -16px;
+    border-color: #f8b500 transparent #f8b500 #f8b500;
+}
+
+
+/* --- QR Code Wrapper (Right Column) --- */
+.qr-wrapper {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 30px;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.3s ease-out;
+    position: absolute;
+    left: 100%;
+    margin-left: 20px; 
+    top: 0;
+    z-index: 20;
+}
+
+.qr-wrapper.show {
+    display: flex;
+}
+
+.qr-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: #fff;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.qr-close-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+.qr-wrapper h3 {
+    margin: 0;
+    font-weight: 500;
+    opacity: 0.9;
+}
+.qr-code-container {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+}
+.qr-code-container img {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 4px;
+}
+.share-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1em;
+}
+.share-btn i {
+    font-size: 1.2em;
+}
+
+/* --- QR-Only View (for scanning) --- */
+body.qr-view {
+    background: none;
+}
+body.qr-view .profile-wrapper {
+    gap: 0;
+}
+body.qr-view .qr-wrapper,
+body.qr-view .button-group,
+body.qr-view .save-message {
+    display: none;
+}
+body.qr-view .id-card {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* === Avatar Context Menu Styles === */
+.avatar-context-menu {
+    display: none; 
+    position: absolute;
+    top: 155px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    padding: 6px;
+    z-index: 30; 
+    animation: fadeIn 0.15s ease-out;
+}
+.avatar-context-menu.show {
+    display: block;
+}
+
+.avatar-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #333;
+}
+.avatar-menu-item:hover {
+    background: #f0f0f0;
+}
+.avatar-menu-item i {
+    font-size: 1.2em;
+    color: #555;
+}
+.avatar-menu-item#menuRemoveImage {
+    border-top: 1px solid #f0f0f0; 
+    color: #dc3545;
+}
+.avatar-menu-item#menuRemoveImage i {
+    color: #dc3545;
+}
+.avatar-menu-item#menuRemoveImage:hover {
+    background: #fff0f1;
+}
+
+/* Responsive: On small screens, stack the card and QR code */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        padding: 20px 0;
+    }
+    .card-container {
+        flex-direction: column;
+        align-items: unset; 
+        position: relative;
+    }
+    .profile-wrapper {
+        order: 1;
+    }
+    .qr-wrapper {
+        order: 2;
+        width: 320px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 490px;
+    }
+}
