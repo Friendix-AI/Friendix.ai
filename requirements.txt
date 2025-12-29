@@ -14,4 +14,5 @@ APScheduler
 openai
 pypdf
 python-docx
+groq
 Pillow
