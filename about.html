@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Friendix.ai</title>
+
+    <!-- SEO & Site Name -->
+    <meta name="description"
+        content="Learn about Friendix.ai's mission to build the future of AI companionship. A friend who is always there to listen and support.">
+    <meta property="og:site_name" content="Friendix.ai">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Friendix.ai",
+      "alternateName": ["Friendix", "Friendix AI"],
+      "url": "https://friendix-ai.onrender.com/"
+    }
+    </script>
+    <style>
+        /* --- Sparkle Animations --- */
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .sparkle-background {
+            position: fixed;
+            /* Fixed position to cover viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            /* Place it behind all content */
+            pointer-events: none;
+            overflow: hidden;
+            background-color: #000;
+            /* Set background to black */
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #D6B6FF;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 1px #D6B6FF;
+            animation-name: sparkle;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .sparkle:nth-child(1) {
+            top: 20%;
+            left: 30%;
+            animation-duration: 3s;
+            animation-delay: 0.5s;
+        }
+
+        .sparkle:nth-child(2) {
+            top: 40%;
+            left: 80%;
+            animation-duration: 4s;
+            animation-delay: 1.2s;
+        }
+
+        .sparkle:nth-child(3) {
+            top: 60%;
+            left: 10%;
+            animation-duration: 2.5s;
+            animation-delay: 2s;
+        }
+
+        .sparkle:nth-child(4) {
+            top: 80%;
+            left: 50%;
+            animation-duration: 3.5s;
+            animation-delay: 0.2s;
+        }
+
+        .sparkle:nth-child(5) {
+            top: 10%;
+            left: 60%;
+            animation-duration: 4.5s;
+            animation-delay: 1.5s;
+        }
+
+        .sparkle:nth-child(6) {
+            top: 50%;
+            left: 40%;
+            animation-duration: 3s;
+            animation-delay: 2.8s;
+        }
+
+        .sparkle:nth-child(7) {
+            top: 70%;
+            left: 90%;
+            animation-duration: 5s;
+            animation-delay: 0.8s;
+        }
+
+        .sparkle:nth-child(8) {
+            top: 30%;
+            left: 5%;
+            animation-duration: 3.8s;
+            animation-delay: 1.8s;
+        }
+
+        .sparkle:nth-child(9) {
+            top: 90%;
+            left: 20%;
+            animation-duration: 2.7s;
+            animation-delay: 0.1s;
+        }
+
+        .sparkle:nth-child(10) {
+            top: 5%;
+            left: 95%;
+            animation-duration: 4.2s;
+            animation-delay: 2.2s;
+        }
+
+        .sparkle:nth-child(11) {
+            top: 95%;
+            left: 85%;
+            animation-duration: 3.2s;
+            animation-delay: 0.7s;
+        }
+
+        .sparkle:nth-child(12) {
+            top: 85%;
+            left: 15%;
+            animation-duration: 4.8s;
+            animation-delay: 1.3s;
+        }
+
+        .sparkle:nth-child(13) {
+            top: 65%;
+            left: 65%;
+            animation-duration: 2.8s;
+            animation-delay: 2.1s;
+        }
+
+        .sparkle:nth-child(14) {
+            top: 35%;
+            left: 35%;
+            animation-duration: 3.6s;
+            animation-delay: 0.3s;
+        }
+
+        .sparkle:nth-child(15) {
+            top: 15%;
+            left: 75%;
+            animation-duration: 4.3s;
+            animation-delay: 1.6s;
+        }
+
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            /* === UPDATED: Dark theme === */
+            background-color: #000;
+            color: #cdd5e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 25px 5%;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #A98EFF;
+            /* Updated color */
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            /* === NEW: Dark card style === */
+            background-color: rgba(17, 17, 37, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #fff;
+            /* Updated color */
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            font-size: 2.5em;
+        }
+
+        p,
+        ul {
+            margin-bottom: 1em;
+            font-size: 1.1em;
+        }
+
+        .mission {
+            font-size: 1.25em;
+            color: #cdd5e0;
+            /* Updated color */
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #A98EFF;
+            /* Updated color */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .team-member {
+            margin-top: 1em;
+        }
+
+        .team-member strong {
+            font-size: 1.1em;
+            color: #fff;
+            /* Updated color */
+        }
+
+        .founder-img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sparkle-background">
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+        <span class="sparkle"></span>
+    </div>
+
+    <div class="container">
+        <a href="web.html" class="back-link">&larr; Back to Home</a>
+
+        <div class="content-wrapper">
+            <h1>About Us</h1>
+            <p class="mission">
+                We are building a new kind of AI friend. One that's always here to listen, support, and chat, making
+                sure no one ever has to feel alone.
+            </p>
+
+            <h2>Our Story</h2>
+            <p>In a world that's more connected than ever, it's surprisingly easy to feel disconnected. We wanted to
+                create a safe, private, and non-judgmental space where anyone could express themselves freely.</p>
+            <p>What if AI could be more than just a tool for productivity? What if it could be a true companion?</p>
+            <p>That’s why Friendix.ai was created. It's not just a chatbot; it's a personal companion designed to learn,
+                adapt, and grow with you. Whether you're chatting with your dedicated AI, Luvisa, or creating a
+                intelligent conversation. This space is private, secure, and yours alone.</p>
+
+            <h2>What We Offer</h2>
+            <ul>
+                <li><strong>AI Companions:</strong> Chat with Luvisa and other unique personalities who are always ready
+                    to listen, advise, and support you 24/7.</li>
+                <li><strong>Secret Journal:</strong> A private, secure journal where you can record your daily thoughts
+                    and feelings. Your entries are yours alone.</li>
+                <li><strong>Together Spaces:</strong> Create temporary, encrypted chat rooms to connect with friends
+                    instantly. No history is saved, ensuring total privacy.</li>
+            </ul>
+
+            <h2>Our Team</h2>
+            <p>Friendix.ai is built by a passionate creator focused on the future of human-AI companionship.</p>
+
+            <img src="founder.png" alt="Dhanush, Founder and CEO of Friendix.ai" class="founder-img">
+            <div class="team-member">
+                <p><strong>Dhanush</strong> is the founder and CEO of Friendix.ai.</p>
+            </div>
+
+            <h2>Contact Us</h2>
+            <p>We’d love to hear from you. For feedback, feature requests, questions, or just to say hi, please reach
+                out to us.</p>
+            <p><a href="mailto:dhanush.business01@gmail.com">dhanush.business01@gmail.com</a></p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
