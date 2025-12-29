@@ -1,0 +1,17 @@
+flask
+flask-cors
+pymongo
+bcrypt
+python-dotenv
+nltk
+text2emotion
+firebase-admin
+emoji==1.7.0
+gunicorn
+dnspython
+requests
+APScheduler
+openai
+pypdf
+python-docx
+Pillow
